@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery | Sky Portfolio</title>
+
+    <!-- Connect your existing CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="site-header">
+        <div class="nav-wrap">
+
+            <a class="brand" href="index.html">
+                <span class="brand-mark">☁</span>
+                <span>SKY PORTFOLIO</span>
+            </a>
+
+            <button class="menu-toggle"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                ☰ Menu
+            </button>
+
+            <nav class="nav-links" aria-label="Main navigation">
+                <a href="index.html">Home</a>
+                <a href="skills.html">Skills</a>
+                <a href="goals.html">Goals</a>
+                <a href="funfacts.html">Fun Facts</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="#" class="logout" data-logout>Log out</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <!-- Gallery Section -->
+    <main>
+        <section class="section">
+            <div class="container">
+
+                <div class="section-head">
+                    <span class="eyebrow">MY PHOTO COLLECTION</span>
+                    <h1>My Photo Gallery 📸</h1>
+                    <p>
+                        Welcome to my gallery! Here are some of my favorite
+                        pictures and memorable moments.
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+
+                    <!-- Photo 1 -->
+                    <div class="gallery-item">
+                        <img src="Glenn.jpg"
+                             alt="My favorite photo"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>My Favorite Photo</h3>
+                            <p>A picture that I love.</p>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="gallery-item">
+                        <img src="Friends.jpeg"
+                             alt="My friends"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Friends</h3>
+                            <p>Memorable moments with friends.</p>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div class="gallery-item">
+                        <img src="Family.jpg"
+                             alt="My family"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Family</h3>
+                            <p>Special moments with my family.</p>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="gallery-item">
+                        <img src="Travel.jpg"
+                             alt="My travel memory"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Travel Memories</h3>
+                            <p>Places and memories worth keeping.</p>
+                        </div>
+                    </div>
+
+                    <!-- Photo 5 -->
+                    <div class="gallery-item">
+                        <img src="Hobby.jpg"
+                             alt="My hobby"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>My Hobbies</h3>
+                            <p>Things I enjoy doing in my free time.</p>
+                        </div>
+                    </div>
+
+                    <!-- Photo 6 -->
+                    <div class="gallery-item">
+                        <img src="Memory.jpg"
+                             alt="My special memories"
+                             loading="lazy">
+                        <div class="gallery-caption">
+                            <h3>Special Memories</h3>
+                            <p>Moments I will always remember.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="actions" style="margin-top: 30px;">
+                    <a href="index.html" class="btn btn-primary">
+                        ← Back to Home
+                    </a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Image Lightbox -->
+    <div class="lightbox" aria-hidden="true">
+        <button class="lightbox-close" aria-label="Close image">
+            &times;
+        </button>
+
+        <button class="lightbox-prev" aria-label="Previous image">
+            &#10094;
+        </button>
+
+        <img class="lightbox-image" src="" alt="Selected gallery photo">
+
+        <button class="lightbox-next" aria-label="Next image">
+            &#10095;
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>
+                © <span data-year></span> Sky Portfolio · INFOT 2
+            </span>
+            <span>Made with ☁ and curiosity.</span>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll("[data-year]").forEach(element => {
+            element.textContent = new Date().getFullYear();
+        });
+    </script>
+
+    <!-- Connect your existing JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>

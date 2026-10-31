@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eaf7ff">
+  <title>Home | Sky Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">☁</span>
+      <span>GLENN PORTFOLIO</span>
+    </a>
+
+    <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      ☰ Menu
+    </button>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="goals.html">Goals</a>
+      <a href="funfacts.html">Fun Facts</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" class="logout" data-logout>Log out</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">PERSONAL PORTFOLIO • INFOT 2</span>
+
+      <h1>Welcome to my little <span>piece of sky.</span></h1>
+
+      <p class="lead">
+        Hi, I’m Glenn John M. Padroncillo. This is my personal portfolio —
+        a place to share the skills I’m building, goals I’m reaching for,
+        and little things that make me who I am.
+      </p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="skills.html">Explore my skills ↗</a>
+        <a class="btn btn-secondary" href="contact.html">Get in touch</a>
+      </div>
+
+      <div style="margin-top:38px" class="profile-chip">
+        <div class="avatar">☁️</div>
+        <div>
+          <strong>GLENN JOHN M. PADRONCILLO</strong>
+          <div style="color:var(--muted);font-size:.9rem">
+            Student · Future front-end developer
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">A LITTLE ABOUT ME</span>
+        <h2>Curious by nature. Growing by design.</h2>
+        <p>Every new skill begins with a first step. Here are a few parts of my journey.</p>
+      </div>
+
+      <div class="grid">
+        <a class="card" href="skills.html">
+          <span class="card-icon">💻</span>
+          <h3>Skills I’m developing</h3>
+          <p>Explore the technical and creative skills I’m practicing, one project at a time.</p>
+        </a>
+
+        <a class="card" href="goals.html">
+          <span class="card-icon">🎯</span>
+          <h3>Goals &amp; dreams</h3>
+          <p>See the milestones that keep me focused on becoming a better developer.</p>
+        </a>
+
+        <a class="card" href="gallery.html">
+          <span class="card-icon">📷</span>
+          <h3>Moments in pictures</h3>
+          <p>A small gallery of visuals and memories that inspire me.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <span>© <span data-year></span> Sky Portfolio · INFOT 2</span>
+    <span>Made with ☁ and curiosity.</span>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-year]').forEach(e => {
+    e.textContent = new Date().getFullYear();
+  });
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

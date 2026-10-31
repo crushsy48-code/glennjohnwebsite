@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf7ff">
+  <title> My Website | Login</title>
+  <link rel="stylesheet" href="login_style.css">
+</head>
+<body><main class="auth-shell">  <section class="auth-intro">
+    <a class="brand" href="login.html">
+      <span>☁</span> Glenn Porfolio
+    </a><div class="intro-copy">
+  <span class="eyebrow">PERSONAL PORTFOLIO • INFOT 2</span>
+  <h1>Welcome to my Website <span>.</span></h1>
+  <p>
+    A personal space for my skills, goals, favorite moments,
+    and everything I'm learning along the way.
+  </p>
+</div>
+
+<p class="intro-note">Designed with curiosity, built with code. ✦</p>
+
+  </section>  <section class="auth-panel"><h2 id="formTitle">Welcome back</h2>
+<p class="subtext" id="formSubtitle">
+  Sign in to explore the portfolio.
+</p>
+
+<div class="toast" id="toast" role="status"></div>
+
+<form class="auth-form" id="authForm">
+
+  <div class="auth-field">
+    <label for="username">Username</label>
+    <input
+      id="username"
+      name="username"
+      type="text"
+      autocomplete="username"
+      placeholder="Enter your username"
+      required
+      minlength="3"
+    >
+  </div>
+
+  <div class="auth-field">
+    <label for="password">Password</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      autocomplete="current-password"
+      placeholder="Enter your password"
+      required
+      minlength="6"
+    >
+  </div>
+
+  <div class="auth-field" id="confirmWrap" hidden>
+    <label for="confirmPassword">Confirm password</label>
+    <input
+      id="confirmPassword"
+      name="confirmPassword"
+      type="password"
+      autocomplete="new-password"
+      placeholder="Enter your password again"
+    >
+  </div>
+
+  <label class="show-password">
+    <input type="checkbox" id="showPassword">
+    Show password
+  </label>
+
+  <p class="auth-error" id="errorMessage" role="alert"></p>
+
+  <button class="submit-btn" id="submitBtn" type="submit">
+    LOGIN TO MY WEBSITE
+  </button>
+
+</form>
+
+<p class="switch-mode" id="switchText">
+  New here?
+  <button type="button" id="switchMode">Create an account</button>
+</p>
+
+<p class="subtext" style="font-size:.78rem;margin-top:20px">
+  Student portfolio login demo.
+</p>
+
+  </section>
+</main><script>
+const form = document.querySelector('#authForm');
+const title = document.querySelector('#formTitle');
+const subtitle = document.querySelector('#formSubtitle');
+const username = document.querySelector('#username');
+const password = document.querySelector('#password');
+const confirmWrap = document.querySelector('#confirmWrap');
+const confirmPassword = document.querySelector('#confirmPassword');
+const showPassword = document.querySelector('#showPassword');
+const submitBtn = document.querySelector('#submitBtn');
+const switchText = document.querySelector('#switchText');
+const error = document.querySelector('#errorMessage');
+const toast = document.querySelector('#toast');
+
+let mode = 'login';
+
+function setMode(nextMode) {
+  mode = nextMode;
+
+  title.textContent = mode === 'login'
+    ? 'Welcome back'
+    : 'Create your account';
+
+  subtitle.textContent = mode === 'login'
+    ? 'Sign in to explore the portfolio.'
+    : 'Create an account to get started.';
+
+  confirmWrap.hidden = mode === 'login';
+  confirmPassword.required = mode === 'signup';
+
+  password.autocomplete = mode === 'login'
+    ? 'current-password'
+    : 'new-password';
+
+  submitBtn.textContent = mode === 'login'
+    ? 'LOGIN TO MY WEBSITE'
+    : 'CREATE ACCOUNT';
+
+  switchText.replaceChildren(
+    document.createTextNode(
+      mode === 'login'
+        ? 'New here? '
+        : 'Already have an account? '
+    )
+  );
+
+  const switchButton = document.createElement('button');
+  switchButton.type = 'button';
+  switchButton.textContent = mode === 'login'
+    ? 'Create an account'
+    : 'Sign in';
+
+  switchButton.addEventListener('click', () => {
+    setMode(mode === 'login' ? 'signup' : 'login');
+  });
+
+  switchText.appendChild(switchButton);
+
+  error.textContent = '';
+  toast.textContent = '';
+  toast.classList.remove('show');
+}
+
+switchText.querySelector('button').addEventListener('click', () => {
+  setMode('signup');
+});
+
+showPassword.addEventListener('change', () => {
+  password.type = showPassword.checked ? 'text' : 'password';
+  confirmPassword.type = showPassword.checked ? 'text' : 'password';
+});
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+
+  error.textContent = '';
+  toast.textContent = '';
+
+  const user = username.value.trim();
+  const pass = password.value;
+
+  if (user.length < 3) {
+    error.textContent = 'Username must be at least 3 characters.';
+    return;
+  }
+
+  if (pass.length < 6) {
+    error.textContent = 'Password must be at least 6 characters.';
+    return;
+  }
+
+  let accounts;
+
+  try {
+    accounts = JSON.parse(
+      localStorage.getItem('skyPortfolioAccounts') || '{}'
+    );
+
+    if (
+      !accounts ||
+      typeof accounts !== 'object' ||
+      Array.isArray(accounts)
+    ) {
+      accounts = {};
+    }
+  } catch {
+    accounts = {};
+  }
+
+  if (mode === 'signup') {
+    if (pass !== confirmPassword.value) {
+      error.textContent = 'Passwords do not match.';
+      return;
+    }
+
+    if (Object.prototype.hasOwnProperty.call(accounts, user)) {
+      error.textContent = 'Username already exists. Please sign in.';
+      return;
+    }
+
+    accounts[user] = pass;
+    localStorage.setItem(
+      'skyPortfolioAccounts',
+      JSON.stringify(accounts)
+    );
+
+    toast.textContent = 'Account created! You can now sign in.';
+    toast.classList.add('show');
+
+    form.reset();
+    setMode('login');
+    toast.textContent = 'Account created! You can now sign in.';
+    toast.classList.add('show');
+    return;
+  }
+
+  if (
+    !Object.prototype.hasOwnProperty.call(accounts, user) ||
+    accounts[user] !== pass
+  ) {
+    error.textContent =
+      'Incorrect username or password. Please sign up first if you are new.';
+    return;
+  }
+
+  localStorage.setItem('skyPortfolioLoggedIn', 'true');
+  localStorage.setItem('skyPortfolioUser', user);
+
+  window.location.href = 'index.html';
+});
+</script></body>
+</html>
